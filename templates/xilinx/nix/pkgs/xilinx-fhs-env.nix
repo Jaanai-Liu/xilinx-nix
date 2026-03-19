@@ -1,6 +1,7 @@
-{ pkgs ? import <nixpkgs> { }, 
+{
+  pkgs ? import <nixpkgs> { },
   fetchFromGitHub,
-  getEnv', 
+  getEnv',
 }:
 let
   nixpkgsSrcs = fetchFromGitHub {
@@ -13,7 +14,7 @@ let
   lockedPkgs = import nixpkgsSrcs { system = "x86_64-linux"; };
   gcc9 = pkgs.lib.hiPrio lockedPkgs.gcc9;
 
-  xilinxHome = getEnv' "XILINX_STATIC_HOME"; 
+  xilinxHome = getEnv' "XILINX_STATIC_HOME";
   vcStaticHome = getEnv' "VC_STATIC_HOME";
   lmLicenseFile = getEnv' "LM_LICENSE_FILE";
 in
@@ -57,11 +58,11 @@ pkgs.buildFHSEnv {
     export VC_STATIC_HOME=${vcStaticHome}
     export TCL_TZ=UTC
     export VC_STATIC_HOME=$VC_STATIC_HOME
-    export VCS_HOME=$VC_STATIC_HOME/vcs/U-2023.03-SP2
+    export VCS_HOME=$VC_STATIC_HOME/vcs/W-2024.09-SP1
     export VCS_TARGET_ARCH=amd64
     export VCS_ARCH_OVERRIDE=linux
-    export VERDI_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
-    export NOVAS_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
+    export VERDI_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
+    export NOVAS_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
     export SNPS_VERDI_CBUG_LCA=1
     export LM_LICENSE_FILE=${lmLicenseFile}
 
@@ -88,13 +89,15 @@ pkgs.buildFHSEnv {
     echo "[FHS] VCS FHS Environment Loaded."
   '';
 
-  targetPkgs = (ps: with ps; 
+  targetPkgs = (
+    ps:
+    with ps;
     let
       ncurses' = ncurses5.overrideAttrs (old: {
         configureFlags = old.configureFlags ++ [ "--with-termlib" ];
         postFixup = "";
       });
-    in 
+    in
     [
       bash
       coreutils
@@ -149,7 +152,7 @@ pkgs.buildFHSEnv {
       elfutils
       time
       util-linux
-      libnsl               
+      libnsl
       binutils
     ]
   );

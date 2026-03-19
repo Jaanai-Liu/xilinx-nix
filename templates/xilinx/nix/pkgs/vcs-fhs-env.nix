@@ -30,11 +30,11 @@ lockedPkgs.buildFHSEnv {
 
     export TCL_TZ=UTC
     export VC_STATIC_HOME=$VC_STATIC_HOME
-    export VCS_HOME=$VC_STATIC_HOME/vcs/U-2023.03-SP2
+    export VCS_HOME=$VC_STATIC_HOME/vcs/W-2024.09-SP1
     export VCS_TARGET_ARCH=amd64
     export VCS_ARCH_OVERRIDE=linux
-    export VERDI_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
-    export NOVAS_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
+    export VERDI_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
+    export NOVAS_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
     export SNPS_VERDI_CBUG_LCA=1
     export LM_LICENSE_FILE=${lmLicenseFile}
 
@@ -107,9 +107,16 @@ lockedPkgs.buildFHSEnv {
       xorg.libXi
       zlib
 
+      # --- 2024 Verdi XCB -by Jaanai ---
+      xorg.xcbutilwm # 提供 libxcb-icccm.so.4 (解决你当前的报错)
+      xorg.xcbutilimage # 提供 libxcb-image.so.0
+      xorg.xcbutilkeysyms # 提供 libxcb-keysyms.so.1
+      xorg.xcbutilrenderutil # 提供 libxcb-render-util.so.0
+      xorg.xcbutil # 基础 XCB util 库
+
       # Synopsys debug tools dependencies
       gdb
-      strace 
+      strace
 
       # verdi other dependencies
       dejavu_fonts
@@ -118,13 +125,13 @@ lockedPkgs.buildFHSEnv {
       xorg.libXcursor
       xorg.libXinerama
       xorg.libXtst
-      xorg.libXt    
-      xorg.libXmu    
-      xorg.libXpm     
+      xorg.libXt
+      xorg.libXmu
+      xorg.libXpm
       xorg.libXaw
-      xorg.libSM               
-      xorg.libICE          
-      xorg.libXrandr       
+      xorg.libSM
+      xorg.libICE
+      xorg.libXrandr
       numactl
       libpng
       libjpeg
@@ -132,4 +139,3 @@ lockedPkgs.buildFHSEnv {
     ]
   );
 }
-
