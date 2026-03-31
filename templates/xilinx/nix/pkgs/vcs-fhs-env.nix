@@ -40,11 +40,11 @@ lockedPkgs.buildFHSEnv {
 
     export TCL_TZ=UTC
     export VC_STATIC_HOME=$VC_STATIC_HOME
-    export VCS_HOME=$VC_STATIC_HOME/vcs/W-2024.09-SP1
+    export VCS_HOME=$VC_STATIC_HOME/vcs/V-2023.12-SP2
     export VCS_TARGET_ARCH=amd64
     export VCS_ARCH_OVERRIDE=linux
-    export VERDI_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
-    export NOVAS_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
+    export VERDI_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
+    export NOVAS_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
     export SNPS_VERDI_CBUG_LCA=1
     export LM_LICENSE_FILE=${lmLicenseFile}
 
@@ -121,6 +121,13 @@ lockedPkgs.buildFHSEnv {
       zlib
 
       # --- 2024 Verdi XCB -by jaanai ---
+      libmng # 修复 libmng.so.1 缺失 (Qt 图片解析)
+      libtiff # 修复 libtiff.so.5 缺失 (Qt 图片解析)
+      motif # Verdi 的 nWave 强依赖的传统 UI 框架
+      xorg.fontadobe100dpi # Motif 界面必须的传统 X11 字体
+      xorg.fontadobe75dpi # Motif 界面必须的传统 X11 字体
+      # xorg.fontx11miscmisc # 修复找不到基础字体导致的 fatal IO error 2
+
       xorg.xcbutilwm # 提供 libxcb-icccm.so.4 (解决你当前的报错)
       xorg.xcbutilimage # 提供 libxcb-image.so.0
       xorg.xcbutilkeysyms # 提供 libxcb-keysyms.so.1

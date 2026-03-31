@@ -58,11 +58,11 @@ pkgs.buildFHSEnv {
     export VC_STATIC_HOME=${vcStaticHome}
     export TCL_TZ=UTC
     export VC_STATIC_HOME=$VC_STATIC_HOME
-    export VCS_HOME=$VC_STATIC_HOME/vcs/W-2024.09-SP1
+    export VCS_HOME=$VC_STATIC_HOME/vcs/V-2023.12.SP2
     export VCS_TARGET_ARCH=amd64
     export VCS_ARCH_OVERRIDE=linux
-    export VERDI_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
-    export NOVAS_HOME=$VC_STATIC_HOME/verdi/W-2024.09-SP1
+    export VERDI_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
+    export NOVAS_HOME=$VC_STATIC_HOME/verdi/V-2023.12-SP2
     export SNPS_VERDI_CBUG_LCA=1
     export LM_LICENSE_FILE=${lmLicenseFile}
 
